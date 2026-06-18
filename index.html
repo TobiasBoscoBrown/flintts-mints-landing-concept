@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Flintts Mints — Dry Mouth Sucks | High-Converting Landing Page Concept</title>
+<meta name="description" content="Flintts Mouthwatering Mints make your mouth water and sparkle. Powered by the Spilanthes flower. Vegan, sugar-free, plastic-free. A conversion-focused landing page concept." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --mint:#6BD6C3;
+    --mint-deep:#3CB9A3;
+    --mint-tint:#EBF9F6;
+    --offwhite:#F9F9F9;
+    --ink:#111111;
+    --spark:#D8FF3E;
+    --radius:12px;
+    --maxw:1180px;
+    --shadow:0 18px 50px -20px rgba(17,17,17,.35);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',system-ui,sans-serif;color:var(--ink);background:var(--offwhite);overflow-x:hidden}
+  h1,h2,h3,.display{font-family:'Montserrat',sans-serif;font-weight:900;letter-spacing:-.02em;line-height:.95;text-transform:uppercase}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;font-family:'Montserrat',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:.04em;font-size:15px;padding:16px 30px;border-radius:8px;cursor:pointer;border:2px solid var(--ink);transition:transform .15s ease, box-shadow .15s ease, background .15s ease;will-change:transform}
+  .btn-dark{background:var(--ink);color:var(--offwhite)}
+  .btn-dark:hover{transform:translateY(-3px);box-shadow:0 12px 24px -10px rgba(17,17,17,.6)}
+  .btn-mint{background:var(--mint);color:var(--ink)}
+  .btn-mint:hover{transform:translateY(-3px);box-shadow:0 12px 26px -10px rgba(60,185,163,.8)}
+  .btn-ghost{background:transparent;color:var(--ink)}
+  .btn-ghost:hover{background:var(--ink);color:var(--offwhite)}
+  section{position:relative}
+
+  /* announcement */
+  .announce{background:var(--ink);color:#fff;text-align:center;font-family:'Montserrat',sans-serif;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;padding:9px 16px}
+
+  /* header */
+  header{position:sticky;top:0;z-index:60;background:rgba(249,249,249,.86);backdrop-filter:blur(10px);border-bottom:1px solid rgba(17,17,17,.08);transition:box-shadow .2s}
+  header.scrolled{box-shadow:0 6px 20px -12px rgba(17,17,17,.4)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:66px}
+  .logo{font-family:'Montserrat',sans-serif;font-weight:900;font-size:24px;letter-spacing:-.01em;text-transform:uppercase}
+  .nav-links{display:flex;gap:30px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase}
+  .nav-links a{position:relative;padding:4px 0}
+  .nav-links a::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:2px;background:var(--ink);transition:width .2s}
+  .nav-links a:hover::after{width:100%}
+  .nav .btn{padding:11px 22px;font-size:13px}
+  .burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none}
+  .burger span{width:26px;height:3px;background:var(--ink);border-radius:2px}
+
+  /* hero */
+  .hero{background:var(--mint);position:relative;overflow:hidden;padding:74px 0 90px}
+  .blobs{position:absolute;inset:0;opacity:.55;pointer-events:none}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;position:relative;z-index:2}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:#fff;font-family:'Montserrat',sans-serif;font-weight:800;font-size:12px;letter-spacing:.1em;text-transform:uppercase;padding:8px 16px;border-radius:50px;margin-bottom:22px}
+  .hero h1{font-size:clamp(54px,8.5vw,104px)}
+  .hero h1 .spark-word{color:#fff;-webkit-text-stroke:2px var(--ink);position:relative}
+  .hero p.sub{font-size:clamp(18px,2.4vw,23px);font-weight:500;margin:22px 0 30px;max-width:480px;line-height:1.4}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+  .stars{display:flex;align-items:center;gap:10px;margin-top:26px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:14px}
+  .stars .s{color:#111;letter-spacing:2px;font-size:18px}
+  /* product tin (CSS art) */
+  .tin-stage{display:flex;justify-content:center;align-items:center;position:relative}
+  .sparkle{position:absolute;font-size:34px;animation:float 3.4s ease-in-out infinite}
+  @keyframes float{0%,100%{transform:translateY(0) rotate(-6deg)}50%{transform:translateY(-14px) rotate(6deg)}}
+  .tin{width:230px;height:230px;border-radius:28px;background:linear-gradient(150deg,#fff,#f0fffb);border:3px solid var(--ink);box-shadow:var(--shadow);position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(-7deg);transition:transform .4s}
+  .tin:hover{transform:rotate(0) scale(1.04)}
+  .tin .tin-top{position:absolute;top:14px;font-family:'Montserrat';font-weight:800;font-size:12px;letter-spacing:.18em}
+  .tin .flavor{font-family:'Montserrat';font-weight:900;font-size:30px;text-align:center;line-height:.92;padding:0 16px}
+  .tin .dot{width:54px;height:54px;border-radius:50%;background:var(--mint);border:3px solid var(--ink);margin:14px 0}
+  .tin .tin-bot{position:absolute;bottom:14px;font-family:'Montserrat';font-weight:700;font-size:11px;letter-spacing:.16em}
+
+  /* marquee */
+  .marquee{background:var(--ink);color:#fff;overflow:hidden;padding:15px 0;white-space:nowrap}
+  .marquee.mint{background:var(--mint);color:var(--ink);border-top:3px solid var(--ink);border-bottom:3px solid var(--ink)}
+  .track{display:inline-flex;gap:42px;animation:scroll 38s linear infinite;font-family:'Montserrat';font-weight:800;font-size:14px;letter-spacing:.08em;text-transform:uppercase}
+  .track.fast{animation-duration:24s}
+  .track span{display:inline-flex;align-items:center;gap:42px}
+  @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* sections */
+  .pad{padding:90px 0}
+  .kicker{font-family:'Montserrat';font-weight:800;letter-spacing:.16em;text-transform:uppercase;font-size:13px;color:var(--mint-deep)}
+  .sec-title{font-size:clamp(34px,5vw,58px);margin:12px 0 0}
+  .lead{font-size:18px;font-weight:500;color:#444;max-width:560px;margin-top:16px;line-height:1.55}
+  .center{text-align:center}
+  .center .lead{margin-left:auto;margin-right:auto}
+
+  /* how it works */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:54px}
+  .step{background:#fff;border:2px solid var(--ink);border-radius:var(--radius);padding:34px 26px;text-align:center;box-shadow:0 10px 0 -2px var(--ink)}
+  .step .ic{width:78px;height:78px;margin:0 auto 18px;border-radius:50%;background:var(--mint-tint);border:2px solid var(--ink);display:flex;align-items:center;justify-content:center}
+  .step h3{font-size:22px;margin-bottom:10px}
+  .step p{color:#555;font-size:15px;line-height:1.5}
+  .step .num{font-family:'Montserrat';font-weight:900;font-size:13px;color:var(--mint-deep);letter-spacing:.1em}
+
+  /* product grid */
+  .prods{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:50px}
+  .card{background:#fff;border:2px solid var(--ink);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:transform .2s, box-shadow .2s}
+  .card:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+  .card .thumb{aspect-ratio:1;display:flex;align-items:center;justify-content:center;border-bottom:2px solid var(--ink);position:relative;background:var(--mint-tint)}
+  .mini-tin{width:104px;height:104px;border-radius:18px;border:3px solid var(--ink);background:#fff;display:flex;align-items:center;justify-content:center;font-family:'Montserrat';font-weight:900;font-size:15px;text-align:center;line-height:.95;padding:8px;transform:rotate(-6deg)}
+  .badge-pop{position:absolute;top:10px;left:10px;background:var(--spark);border:2px solid var(--ink);font-family:'Montserrat';font-weight:800;font-size:10px;letter-spacing:.08em;padding:4px 9px;border-radius:50px;text-transform:uppercase}
+  .card .body{padding:18px 18px 20px;display:flex;flex-direction:column;gap:8px;flex:1}
+  .card h3{font-size:19px}
+  .rev{font-size:12px;color:#777;font-weight:600;display:flex;align-items:center;gap:5px}
+  .rev .s{color:#f5a623;letter-spacing:1px}
+  .price{font-family:'Montserrat';font-weight:900;font-size:22px}
+  .card .btn{margin-top:auto;padding:12px;font-size:13px}
+
+  /* benefits band */
+  .benefits{background:var(--ink);color:#fff;padding:64px 0}
+  .ben-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;text-align:center}
+  .ben .bi{font-size:34px;margin-bottom:12px}
+  .ben h3{color:#fff;font-size:18px;margin-bottom:6px}
+  .ben p{color:#bdbdbd;font-size:14px;line-height:1.5}
+
+  /* testimonials */
+  .testis{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:50px}
+  .testi{background:var(--mint-tint);border:2px solid var(--ink);border-radius:var(--radius);padding:28px 26px}
+  .testi .q{font-family:'Montserrat';font-weight:800;font-size:18px;line-height:1.3;margin-bottom:16px}
+  .testi .who{font-size:13px;font-weight:700;color:var(--mint-deep);text-transform:uppercase;letter-spacing:.06em}
+
+  /* offer */
+  .offer{background:var(--mint);border-top:3px solid var(--ink);border-bottom:3px solid var(--ink)}
+  .offer-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+  .offer h2{font-size:clamp(34px,5vw,56px)}
+  .offer ul{list-style:none;margin:24px 0;display:flex;flex-direction:column;gap:12px}
+  .offer li{display:flex;align-items:center;gap:12px;font-weight:600;font-size:17px}
+  .offer li .tick{width:26px;height:26px;border-radius:50%;background:var(--ink);color:var(--mint);display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0}
+
+  /* FAQ */
+  .faq{max-width:780px;margin:50px auto 0}
+  .q-item{background:#fff;border:2px solid var(--ink);border-radius:var(--radius);margin-bottom:14px;overflow:hidden}
+  .q-head{width:100%;text-align:left;background:none;border:none;cursor:pointer;padding:22px 24px;font-family:'Montserrat';font-weight:800;font-size:17px;text-transform:uppercase;letter-spacing:.01em;display:flex;justify-content:space-between;align-items:center;gap:16px}
+  .q-head .pm{font-size:26px;line-height:1;transition:transform .25s}
+  .q-item.open .pm{transform:rotate(45deg)}
+  .q-body{max-height:0;overflow:hidden;transition:max-height .3s ease;color:#555;font-size:15px;line-height:1.6}
+  .q-body div{padding:0 24px 22px}
+
+  /* footer */
+  footer{background:var(--ink);color:#fff;padding:70px 0 40px}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:50px;align-items:start}
+  .foot h2{color:#fff;font-size:32px;margin-bottom:12px}
+  .foot p{color:#bdbdbd;max-width:420px;line-height:1.55}
+  .signup{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap}
+  .signup input{flex:1;min-width:200px;padding:15px 18px;border-radius:8px;border:2px solid #fff;background:transparent;color:#fff;font-size:15px;font-family:'Inter'}
+  .signup input::placeholder{color:#888}
+  .foot-links{display:flex;flex-direction:column;gap:10px;font-size:14px;color:#bdbdbd}
+  .foot-links a:hover{color:var(--mint)}
+  .foot-bottom{border-top:1px solid #333;margin-top:46px;padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:12px;color:#888}
+
+  /* concept ribbon */
+  .concept{position:fixed;bottom:0;left:0;right:0;z-index:80;background:var(--ink);color:#fff;font-family:'Montserrat';font-weight:600;font-size:12px;letter-spacing:.02em;text-align:center;padding:9px 36px;border-top:2px solid var(--mint)}
+  .concept a{color:var(--mint);font-weight:800;text-decoration:underline}
+  .concept .x{position:absolute;right:12px;top:50%;transform:translateY(-50%);cursor:pointer;font-weight:800;font-size:16px;background:none;border:none;color:#fff}
+
+  /* mobile sticky CTA */
+  .mcta{position:fixed;bottom:40px;left:0;right:0;z-index:70;display:none;padding:12px 16px;background:rgba(249,249,249,.95);backdrop-filter:blur(8px);border-top:2px solid var(--ink)}
+  .mcta .btn{width:100%}
+
+  /* reveal animation */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .6s ease, transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  @media(max-width:900px){
+    .hero-grid,.offer-grid,.foot-grid{grid-template-columns:1fr}
+    .tin-stage{order:-1;margin-bottom:10px}
+    .steps,.prods,.ben-grid,.testis{grid-template-columns:1fr 1fr}
+    .nav-links{display:none}
+    .burger{display:flex}
+    .nav .btn.desktop-cta{display:none}
+  }
+  @media(max-width:560px){
+    .pad{padding:60px 0}
+    .prods,.testis,.ben-grid{grid-template-columns:1fr}
+    .hero{padding:46px 0 70px}
+    .mcta{display:block}
+    body{padding-bottom:50px}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .track{animation:none}.sparkle{animation:none}.reveal{transition:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="announce">⚡ Free shipping on US orders over $34 — mouth-watering guaranteed 😝</div>
+
+<header id="header">
+  <div class="wrap nav">
+    <a href="#top" class="logo">Flintts&nbsp;Mints</a>
+    <nav class="nav-links">
+      <a href="#how">How It Works</a>
+      <a href="#shop">Shop</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a href="#shop" class="btn btn-dark desktop-cta">Shop Now</a>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <svg class="blobs" viewBox="0 0 1440 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <g fill="#4FC9B3">
+      <ellipse cx="120" cy="90" rx="70" ry="48"/><ellipse cx="380" cy="200" rx="55" ry="38"/>
+      <ellipse cx="700" cy="70" rx="80" ry="52"/><ellipse cx="1020" cy="160" rx="60" ry="42"/>
+      <ellipse cx="1320" cy="80" rx="72" ry="50"/><ellipse cx="240" cy="420" rx="64" ry="44"/>
+      <ellipse cx="560" cy="500" rx="78" ry="50"/><ellipse cx="900" cy="440" rx="58" ry="40"/>
+      <ellipse cx="1200" cy="500" rx="74" ry="48"/><ellipse cx="1400" cy="360" rx="56" ry="40"/>
+      <ellipse cx="60" cy="540" rx="60" ry="42"/><ellipse cx="820" cy="250" rx="46" ry="32"/>
+    </g>
+  </svg>
+  <div class="wrap hero-grid">
+    <div class="reveal">
+      <span class="eyebrow">⚡ Powered by the Spilanthes flower</span>
+      <h1>Dry Mouth<br><span class="spark-word">Sucks.</span></h1>
+      <p class="sub">Flintts Mints spark your salivary glands in milliseconds — so your mouth waters and sparkles on demand. Vegan, sugar-free, and a little bit magic.</p>
+      <div class="hero-cta">
+        <a href="#shop" class="btn btn-dark">Shop the Mints</a>
+        <a href="#how" class="btn btn-ghost">See How It Works</a>
+      </div>
+      <div class="stars">
+        <span class="s">★★★★★</span> 4.8 / 5 from 2,900+ mouth-watering reviews
+      </div>
+    </div>
+    <div class="tin-stage reveal">
+      <span class="sparkle" style="top:8%;left:14%">⚡</span>
+      <span class="sparkle" style="bottom:12%;right:16%;animation-delay:1.1s">✨</span>
+      <div class="tin">
+        <span class="tin-top">FLINTTS</span>
+        <div class="flavor">FRUIT<br>TROOP</div>
+        <div class="dot"></div>
+        <span class="tin-bot">MOUTHWATERING MINTS</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee">
+  <div class="track fast">
+    <span>
+      ★ &ldquo;The most effective way to kill dry mouth in milliseconds&rdquo; &nbsp;•&nbsp; ★ &ldquo;The whole internet is going nuts&rdquo; &nbsp;•&nbsp; ★ &ldquo;I started salivating like one of Pavlov&rsquo;s dogs&rdquo; &nbsp;•&nbsp; ★ &ldquo;Sparking salivary glands with the Spilanthes flower&rdquo; &nbsp;•&nbsp;
+    </span>
+    <span aria-hidden="true">
+      ★ &ldquo;The most effective way to kill dry mouth in milliseconds&rdquo; &nbsp;•&nbsp; ★ &ldquo;The whole internet is going nuts&rdquo; &nbsp;•&nbsp; ★ &ldquo;I started salivating like one of Pavlov&rsquo;s dogs&rdquo; &nbsp;•&nbsp; ★ &ldquo;Sparking salivary glands with the Spilanthes flower&rdquo; &nbsp;•&nbsp;
+    </span>
+  </div>
+</div>
+
+<section class="pad" id="how">
+  <div class="wrap center">
+    <span class="kicker reveal">How It Works</span>
+    <h2 class="sec-title reveal">One flower. Instant sparkle.</h2>
+    <p class="lead reveal">Dry mouth comes from meds, anxiety, travel, and late nights. Flintts fixes it fast — no water, no waiting.</p>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="ic">
+          <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2"><circle cx="12" cy="12" r="3.2"/><path d="M12 3.5c1.8 0 3 1.6 3 3.5S13.8 8.8 12 8.8 9 7 9 7s1.2-3.5 3-3.5z"/><path d="M20.5 12c0 1.8-1.6 3-3.5 3-1.9 0-3.2-1.2-3.2-1.2s1-3 1.5-3.3 5.2-.4 5.2 1.5z"/><path d="M12 20.5c-1.8 0-3-1.6-3-3.5 0-1.9 1.2-3.2 1.2-3.2s3 1 3.3 1.5.4 5.2-1.5 5.2z"/><path d="M3.5 12c0-1.8 1.6-3 3.5-3 1.9 0 3.2 1.2 3.2 1.2s-1 3-1.5 3.3-5.2.4-5.2-1.5z"/></svg>
+        </div>
+        <span class="num">STEP 01</span>
+        <h3>Meet Spilanthes</h3>
+        <p>A buzzing little flower in the daisy family. Nature's salivary spark plug — and the secret in every tin.</p>
+      </div>
+      <div class="step reveal">
+        <div class="ic">
+          <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2"><path d="M12 21c4-3 7-6.2 7-10a7 7 0 0 0-14 0c0 3.8 3 7 7 10z"/><circle cx="12" cy="11" r="2.3"/></svg>
+        </div>
+        <span class="num">STEP 02</span>
+        <h3>Mouth Waters</h3>
+        <p>Pop a mint and Spilanthes stimulates your glands to produce real saliva — naturally, in seconds.</p>
+      </div>
+      <div class="step reveal">
+        <div class="ic">
+          <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2" stroke-linejoin="round"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg>
+        </div>
+        <span class="num">STEP 03</span>
+        <h3>Feel the Sparkle</h3>
+        <p>That signature electric, tingly buzz kicks in. We call it the sparkle. You'll call it addictive.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pad" id="shop" style="background:var(--mint-tint);border-top:2px solid var(--ink);border-bottom:2px solid var(--ink)">
+  <div class="wrap">
+    <div class="center">
+      <span class="kicker reveal">Best Sellers</span>
+      <h2 class="sec-title reveal">Pick your flavor of sparkle</h2>
+    </div>
+    <div class="prods">
+      <div class="card reveal">
+        <div class="thumb"><span class="badge-pop">Best Value</span><div class="mini-tin">FRUIT<br>TROOP</div></div>
+        <div class="body">
+          <h3>Fruit Troop 6-Pack</h3>
+          <div class="rev"><span class="s">★★★★★</span> 748 reviews</div>
+          <div class="price">$34.00</div>
+          <button class="btn btn-dark add">Quick Add +</button>
+        </div>
+      </div>
+      <div class="card reveal">
+        <div class="thumb"><div class="mini-tin">AFTER<br>PARTY</div></div>
+        <div class="body">
+          <h3>After Party</h3>
+          <div class="rev"><span class="s">★★★★★</span> 891 reviews</div>
+          <div class="price">$18.00</div>
+          <button class="btn btn-dark add">Quick Add +</button>
+        </div>
+      </div>
+      <div class="card reveal">
+        <div class="thumb"><div class="mini-tin">JAM<br>BAND</div></div>
+        <div class="body">
+          <h3>Jam Band</h3>
+          <div class="rev"><span class="s">★★★★★</span> 893 reviews</div>
+          <div class="price">$18.00</div>
+          <button class="btn btn-dark add">Quick Add +</button>
+        </div>
+      </div>
+      <div class="card reveal">
+        <div class="thumb"><span class="badge-pop">Fan Fave</span><div class="mini-tin">SOUR<br>POWER</div></div>
+        <div class="body">
+          <h3>Sour Power</h3>
+          <div class="rev"><span class="s">★★★★☆</span> 438 reviews</div>
+          <div class="price">$18.00</div>
+          <button class="btn btn-dark add">Quick Add +</button>
+        </div>
+      </div>
+    </div>
+    <div class="center" style="margin-top:42px">
+      <a href="#offer" class="btn btn-mint reveal">Shop All Flavors</a>
+    </div>
+  </div>
+</section>
+
+<section class="benefits">
+  <div class="wrap">
+    <div class="ben-grid">
+      <div class="ben reveal"><div class="bi">🌱</div><h3>100% Vegan</h3><p>Plant-powered by Spilanthes. Nothing weird, nothing animal.</p></div>
+      <div class="ben reveal"><div class="bi">🚫🍬</div><h3>Sugar Free</h3><p>All the sparkle, zero sugar. Snack on them guilt-free.</p></div>
+      <div class="ben reveal"><div class="bi">♻️</div><h3>Plastic-Free</h3><p>Recyclable tins and packaging the planet won't hate.</p></div>
+      <div class="ben reveal"><div class="bi">🚚</div><h3>Fast & Free $34+</h3><p>Free US shipping over $34. Sparkle shows up quick.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="pad" id="reviews">
+  <div class="wrap center">
+    <span class="kicker reveal">Mouth-Watering Testimonials</span>
+    <h2 class="sec-title reveal">The internet is slobbering</h2>
+    <div class="testis">
+      <div class="testi reveal">
+        <div class="q">&ldquo;I went from feeling the warm tingle to literally slobbering like a bulldog.&rdquo;</div>
+        <div class="who">— A very happy customer</div>
+      </div>
+      <div class="testi reveal">
+        <div class="q">&ldquo;100% the most effective way to kill your dry mouth in milliseconds.&rdquo;</div>
+        <div class="who">— As seen across the internet</div>
+      </div>
+      <div class="testi reveal">
+        <div class="q">&ldquo;I couldn't even keep the mints in my mouth because there was so much slobber.&rdquo;</div>
+        <div class="who">— Real Flintts fan</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="offer pad" id="offer">
+  <div class="wrap offer-grid">
+    <div class="reveal">
+      <span class="kicker">Build Your Variety Pack</span>
+      <h2>Try every<br>sparkle.</h2>
+      <ul>
+        <li><span class="tick">✓</span> Mix Fruit Troop, After Party, Jam Band &amp; Sour Power</li>
+        <li><span class="tick">✓</span> Unlock free shipping at $34</li>
+        <li><span class="tick">✓</span> Vegan, sugar-free, plastic-free — every tin</li>
+        <li><span class="tick">✓</span> 30-day mouth-watering guarantee</li>
+      </ul>
+      <a href="#shop" class="btn btn-dark">Build My Pack</a>
+    </div>
+    <div class="tin-stage reveal">
+      <span class="sparkle" style="top:4%;right:20%">✨</span>
+      <div class="tin" style="transform:rotate(6deg);background:linear-gradient(150deg,#fff,#fff6fb)">
+        <span class="tin-top">FLINTTS</span>
+        <div class="flavor">VARIETY<br>PACK</div>
+        <div class="dot" style="background:var(--spark)"></div>
+        <span class="tin-bot">4 FLAVORS · 1 TIN</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pad" id="faq">
+  <div class="wrap center">
+    <span class="kicker reveal">FAQ</span>
+    <h2 class="sec-title reveal">Still curious?</h2>
+    <div class="faq">
+      <div class="q-item reveal">
+        <button class="q-head">What are Flintts Mints? <span class="pm">+</span></button>
+        <div class="q-body"><div>Quick-dissolving tablets powered by the Spilanthes flower. They stimulate your salivary glands so your mouth waters naturally — perfect for dry mouth from meds, travel, anxiety, or late nights.</div></div>
+      </div>
+      <div class="q-item reveal">
+        <button class="q-head">What is "the sparkle"? <span class="pm">+</span></button>
+        <div class="q-body"><div>The signature buzzing, electric, tingly sensation Flintts create on your tongue. It's harmless, it's wild, and it's exactly why people get hooked.</div></div>
+      </div>
+      <div class="q-item reveal">
+        <button class="q-head">When should I take them? <span class="pm">+</span></button>
+        <div class="q-body"><div>Anytime your mouth feels dry — before a meeting or date, after meds, mid-flight, or whenever you want the sparkle. No water needed.</div></div>
+      </div>
+      <div class="q-item reveal">
+        <button class="q-head">Are they vegan and sugar-free? <span class="pm">+</span></button>
+        <div class="q-body"><div>Yes to both. Flintts Mints are 100% vegan, sugar-free, and come in plastic-free, recyclable packaging.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee mint">
+  <div class="track">
+    <span>VEGAN&nbsp; •&nbsp; SUGAR FREE&nbsp; •&nbsp; PLASTIC-FREE PACKAGING&nbsp; •&nbsp; FREE SHIPPING IN THE US $34+&nbsp; •&nbsp; MADE IN BROOKLYN&nbsp; •&nbsp;</span>
+    <span aria-hidden="true">VEGAN&nbsp; •&nbsp; SUGAR FREE&nbsp; •&nbsp; PLASTIC-FREE PACKAGING&nbsp; •&nbsp; FREE SHIPPING IN THE US $34+&nbsp; •&nbsp; MADE IN BROOKLYN&nbsp; •&nbsp;</span>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="reveal">
+        <h2>Join the Flintts Fam</h2>
+        <p>Get early access to drops, releases, and a little discount on your first sparkle. No spam — just mouth-watering news.</p>
+        <form class="signup" id="signupForm">
+          <input type="email" placeholder="you@email.com" aria-label="Email" required>
+          <button class="btn btn-mint" type="submit">Send My Discount</button>
+        </form>
+        <p id="signupMsg" style="color:var(--mint);font-weight:700;margin-top:12px;display:none">You're in the fam. Check your inbox ✨</p>
+      </div>
+      <div class="foot-links reveal">
+        <strong style="color:#fff;font-family:'Montserrat';letter-spacing:.05em">EXPLORE</strong>
+        <a href="#shop">Shop All</a>
+        <a href="#how">How It Works</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#faq">FAQ</a>
+        <a href="#offer">Variety Packs</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Flintts Mints · Made in Brooklyn, NY</span>
+      <span>Concept landing page — not the official Flintts store.</span>
+    </div>
+  </div>
+</footer>
+
+<div class="mcta"><a href="#shop" class="btn btn-dark">Shop the Mints →</a></div>
+
+<div class="concept" id="concept">
+  Concept landing page by <a href="#top">BuildMyTribe</a> · built for demonstration, not affiliated with Flintts Mints.
+  <button class="x" id="conceptX" aria-label="Dismiss">×</button>
+</div>
+
+<script>
+  // sticky header shadow
+  const header = document.getElementById('header');
+  addEventListener('scroll', () => header.classList.toggle('scrolled', scrollY > 10));
+
+  // reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // FAQ accordion
+  document.querySelectorAll('.q-head').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement;
+      const body = item.querySelector('.q-body');
+      const open = item.classList.toggle('open');
+      body.style.maxHeight = open ? body.scrollHeight + 'px' : '0';
+    });
+  });
+
+  // signup (demo only, no network)
+  document.getElementById('signupForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    document.getElementById('signupMsg').style.display = 'block';
+    e.target.querySelector('input').value = '';
+  });
+
+  // quick add feedback
+  document.querySelectorAll('.add').forEach(b => {
+    b.addEventListener('click', () => {
+      const t = b.textContent; b.textContent = 'Added ✓';
+      setTimeout(() => b.textContent = t, 1300);
+    });
+  });
+
+  // mobile nav -> jump to shop
+  document.getElementById('burger').addEventListener('click', () => {
+    document.getElementById('shop').scrollIntoView({behavior:'smooth'});
+  });
+
+  // dismiss concept ribbon
+  document.getElementById('conceptX').addEventListener('click', () => {
+    document.getElementById('concept').style.display = 'none';
+    document.querySelector('.mcta').style.bottom = '0';
+  });
+</script>
+</body>
+</html>
